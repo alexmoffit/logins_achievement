@@ -1,4 +1,4 @@
-# NO ZYNGA
+# NO Z
 # Starts after filtering out the deleted and "Getting Started" goals
 # Getting archived only
 no.z.archived.achieve <- no.delete.or.started.achieve %>%
