@@ -49,10 +49,20 @@ z.testing.completed[, "total"] <- z.testing.completed2$n
 z.testing.completed[, "complete.percent"]<-(z.testing.completed$completed/z.testing.completed$total)
 
 z.less.monthly.completion <- subset(avg.goals.percent, owner_id %in% z.less.than.monthly.users)
+#filtering out the giant outlier
+z.less.monthly.completion <- z.less.monthly.completion %>%
+  filter(avg.progress < 100)
+  
 z.monthly.completion <- subset(avg.goals.percent, owner_id %in% z.monthly.login.users)
+# filtering out the giant outlier
+z.monthly.completion <- z.monthly.completion %>%
+  filter(avg.progress < 6)
+
 z.weekly.completion <- subset(avg.goals.percent, owner_id %in% z.weekly.login.users)
 
 
 summary(z.less.monthly.completion)
 summary(z.monthly.completion)
 summary(z.weekly.completion)
+
+boxplot(z.less.monthly.completion$avg.progress, z.monthly.completion$avg.progress, z.weekly.completion$avg.progress)

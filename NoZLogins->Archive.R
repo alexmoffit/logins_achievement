@@ -53,6 +53,9 @@ no.z.avg.archive.percent <- no.z.Q4.archive.achieve %>%
 # For % completed --> subset(testing.completed, )
   less.monthly.completion <- subset(no.z.avg.archive.percent, owner_id %in% z.less.than.monthly.users)
   monthly.completion <- subset(no.z.avg.archive.percent, owner_id %in% z.monthly.login.users)
+# filtering out big outlier
+  monthly.completion <- monthly.completion %>%
+    filter(avg.progress < 6)
   weekly.completion <- subset(no.z.avg.archive.percent, owner_id %in% z.weekly.login.users)
 
   summary(less.monthly.completion)
